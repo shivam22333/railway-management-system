@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<body>
+        <style type="text/css">
+            .route {
+    margin: 50px;
+    padding: 25px 25px 35px 35px;
+    background-color: rgba(250, 250, 250, 0.671);
+    border-radius: 20px;
+    width: fit-content;
+    font-weight: bold;
+    
+}
+
+.sel{
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+    position: relative;
+    margin: 20px;
+    height: 0px;
+}
+.select {
+    word-wrap: normal;
+    border-radius: 5px;
+    height: 40px;
+    width: 200px;
+}
+        </style>
+        <div class="route">
+            <p style="color: red;"><b>Book your train ticket</b></p>
+            <form action="{%url 'route'%}" method="POST">
+                {% csrf_token %}
+                {%if error%}
+                {{error}}<br>{%endif%}
+                <label>From</label>
+            <select class="select" name="sele" required>
+                <option>Choose</option>
+                {%for as in a%}
+                <option value="{{as}}">{{as}}</option>
+                
+                {%endfor%}
+            </select>
+            <label>To</label>
+            <select class="select" name="sel" required>
+                <option>Choose</option>
+                {%for as in a%}
+                <option value="{{as}}">{{as}}</option>
+                
+                {%endfor%}
+            </select>
+            <label>Date</label>
+            <input type="date" class="select" name="datet">
+            <button class="btn btn-primary select" type="submit" >Search</button>
+            </form>
+            
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    </body>
+
+{%endblock%}

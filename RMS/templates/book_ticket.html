@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<body>
+
+
+
+    <div class="container" style="padding: 30px;">
+      <table class="table table-info caption-top">
+        <caption>
+          <p style="color:rgb(238, 51, 38); font-weight:bold; padding:8px; background-color:aliceblue">SEAT AVAILABILITY
+          </p>
+          {%for trains in train%}
+        </caption>
+        <thead>
+         {{error}}
+          <tr>
+            <th scope="col">Train NO.</th>
+            <th scope="col">Train Name</th>
+            <th scope="col">Arrival</th>
+            <th scope="col">Departure</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light">
+            <td scope="row">{{trains.no}}</td>
+            <td scope="col">{{trains.name}}</td>
+            <td>{{trains.arrival}}</td>
+            <td>{{trains.departure}}</td>
+          </tr>
+          <tr class="table-light">
+            <th style="color: green;">Sleeper Available {{trains.sc}} seat</th>
+            <th style="color: green;">3AC Available {{trains.third_ac}} seat</th>
+            <th style="color: green;">2AC Available {{trains.second_ac}} seat</th>
+            <th style="color: green;">1AC Available {{trains.first_ac}} seat</th>
+          </tr>
+
+        </tbody>
+        <tfoot>
+          <tr class="table-light">
+            <td><button class="btn btn-secondary">Rs. {{trains.sc_price}}</button> <button class="btn btn-warning"
+                onclick="document.location='{%url 'book_ticket' trains.id 'sc_price' trains.sc%}'">Book</button> </td>
+            <td><button class="btn btn-secondary">Rs. {{trains.third_price}}</button> <button class="btn btn-warning"
+                onclick="document.location='{%url 'book_ticket' trains.id 'third_price' trains.third_ac%}'">Book</button> </td>
+            <td><button class="btn btn-secondary">Rs. {{trains.second_price}}</button> <button class="btn btn-warning"
+                onclick="document.location='{%url 'book_ticket' trains.id 'second_price' trains.second_ac%}'">Book</button> </td>
+            <td><button class="btn btn-secondary">Rs. {{trains.first_price}}</button> <button class="btn btn-warning"
+                onclick="document.location='{%url 'book_ticket' trains.id 'first_price' trains.first_ac%}'">Book</button> </td>
+          </tr>
+        </tfoot>
+        {%endfor%}
+      </table>
+
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+  </body>
+
+{%endblock%}

@@ -1,0 +1,238 @@
+{%extends 'base.html'%}
+{%block content%}
+<body>
+        <style>
+            .pnr {
+
+                margin: auto;
+                padding: 12px;
+                padding-bottom: 10px;
+                background-color: white;
+                border-radius: 15px;
+                width: fit-content;
+                height: 100px;
+                margin-top: 30px;
+            }
+            body{
+    background-image: url("/static/img/bg2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+ }  
+        </style>
+    
+
+        
+
+
+        <div class="pnr">
+            {{error}}<br>
+            <form class="d-flex" action="{%url 'pnr'%}" method="POST">
+                {% csrf_token %}
+
+                <input class="form-control me-2" name="search" type="search" placeholder="Search PNR">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+
+
+
+
+
+
+
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+{%if a%}
+<style>
+        td {
+            border-bottom: 1px solid #ccc;
+            font: 15px arial
+        }
+
+        .ticket {
+            padding: 0px;
+            background-color: rgba(255, 255, 255, 0.856);
+            width: 90%;
+            height: auto;
+            margin: auto;
+            margin-top: 10px;
+
+        }
+        body{
+    background-image: url("/static/img/bg2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+ }         
+    </style>
+
+  
+
+        <div class="ticket">
+            <table width="70%">
+                <tbody>
+
+                    <tr>
+                        <td style="border-bottom:1px solid #ccc;font:10px arial">
+                            <div style="font:bold 20px arial;color:#0099ff;margin:10px;padding:0px"><span>E-Ticket
+                                    </span></div>
+                            {%if m%}
+                            <span><h4>Dear {{a.user.get_full_name}},<br>{{m}}</span>
+                                {%endif%}
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellpadding="10">
+
+                <tbody>
+                    <tr>
+                        <td><b>PNR No. :</b></td>
+                        <td><span>{{a.pnr}}</span></td>
+                        <td><b>Train No. / Name : </b></td>
+                        <td><span>{{a.train.no}} / {{a.train}}
+                                </span></td>
+                        <td><b>Quota : </b> </td>
+                        <td><span>GENERAL </span> </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><b>Transaction ID : </b></td>
+                        <td> <span>100002672158420</span>
+                        </td>
+                        <td><b>Date & Time of Booking :
+                            </b></td>
+                        <td><span>{{a.book_date}}
+                                </span></td>
+                        <td><b>Class : </b></td>
+                        <td><span>{{a.coach}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>From : </b> </td>
+                        <td><span>{{a.train.dest_1}}</span></td>
+                        <td><b>Date of Journey : </b></td>
+                        <td><span>{{a.date}}</span></td>
+                        <td><b>To : </b> </td>
+                        <td><span>{{a.train.dest_2}}</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Boarding At : </b> </td>
+                        <td><span>{{a.train.dest_1}}</span></td>
+                        <td><b>Reservation Up to :</b></td>
+                        <td><span>{{a.train.dest_1}}</span>
+                        </td>
+                        <td><b>Adult: </b>{{d}}</td>
+                        <td><b>Child: </b>{{c}}</td>
+                        
+                    </tr>
+                    <tr>
+                       <td><b>Date Of Boarding : </b> </td>
+                        <td><span>{{a.date}}</span> </td>
+                        <td><b>Scheduled Arrival:</b></td>
+                        <td><span>{{a.train.arrival}}</span>
+                        </td>
+                        <td><b>Scheduled : Departure* </b>
+                        </td>
+                        <td><span>{{a.train.departure}}</span>
+                        </td>
+                        
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <div style="font:bold 15px arial;color:#0099ff;margin-bottom:0px;padding-bottom:0px"><span>Passenger Details</span>
+            </div>
+
+            <table width="100%" cellpadding="10">
+                <tbody>
+                    <tr align="left" style="background-color:#f0f3ff">
+                        <td><b>SR. No.</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Age</b></td>
+                        <td><b>Gender</b></td>
+                        <td><b>Status</b></td>
+                        <td><b>Coach</b></td>
+                        <td><b>Seat No</b></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>{{a.passenger1}}</td>
+                        <td>{{a.age1}}</td>
+                        <td>{{a.gender1}}</td>
+                        <td>CNF</td>
+                        <td>{{a.coach_train}}</td>
+                        <td>{{a.seat1}}</td>
+                    </tr>
+                    {%if a.passenger2%}
+                    <tr>
+                        <td>2</td>
+                        <td>{{a.passenger2}}</td>
+                        <td>{{a.age2}}</td>
+                        <td>{{a.gender2}}</td>
+                        <td>CNF</td>
+                        <td>{{a.coach_train}}</td>
+                        <td>{{a.seat2}}</td>
+                    </tr>
+                    {%endif%}
+                    {%if a.passenger3%}
+                    <tr>
+                        <td>3</td>
+                        <td>{{a.passenger3}}</td>
+                        <td>{{a.age3}}</td>
+                        <td>{{a.gender3}}</td>
+                        <td>CNF</td>
+                        <td>{{a.coach_train}}</td>
+                        <td>{{a.seat3}}</td>
+                    </tr>
+                    {%endif%}
+                    {%if a.passenger4%}
+                    <tr>
+                        <td>4</td>
+                        <td>{{a.passenger4}}</td>
+                        <td>{{a.age4}}</td>
+                        <td>{{a.gender4}}</td>
+                        <td>CNF</td>
+                        <td>{{a.coach_train}}</td>
+                        <td>{{a.seat4}}</td>
+                    </tr>
+                    {%endif%}
+                </tbody>
+            </table>
+            <div style="font:bold 15px arial;color:#0099ff;margin:0;padding:0"><span>Fare Details (Inclusive of
+                    GST)</span></div>
+
+            <table width="100%" cellpadding="10">
+                <tbody>
+                    <tr align="left" style="background-color:#f0f3ff">
+                        <td><b>Ticket Fare</b></td>
+                        <td><b>Convenience Fee</b></td>
+                        <td><b>Total Fare</b></td>
+                    </tr>
+                    <tr>
+                        <td>Rs. {{a.amount}} </td>
+                        <td>Rs. 11.80</td>
+                        <td>Rs. {{b}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+   {%endif%}
+
+    </body>
+
+{%endblock%}

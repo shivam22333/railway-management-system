@@ -1,0 +1,44 @@
+{%extends 'base.html' %}
+{%block content%}
+
+<style>
+    .trans {
+        padding: 20px;
+        background-color: white;
+        width: 35%;
+        height: auto;
+        border-radius: 20px;
+        width: fit-content;
+        margin: auto;
+        margin-top: 60px;
+
+    }
+
+    h2 {
+        color: green;
+        padding-top: 30px;
+    }
+
+    .ab {
+        margin: auto;
+        width: 35%;
+    }
+</style>
+
+<body>
+    <div class="trans">
+
+        <p>
+        <h2>Transaction is Successfully completed!!</h2>
+        </p>
+        <div class="ab">
+            <a class="btn btn-primary" style="margin:8px" href="{%url 'pdf'%}">View</a>
+            <a class="btn btn-primary " href="{%url 'downloadpdf'%}">Download</a>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
+{%endblock%}

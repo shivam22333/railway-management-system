@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Password reset complete{% endblock %}
+
+{% block content %}
+<style >
+	.col-lg-4.mx-auto.shadow.p-3.mb-5.bg-white.rounded {
+    margin-top: 90px;
+    }
+</style>
+ <div class="col-lg-4 mx-auto shadow p-3 mb-5 bg-white rounded">
+<div class="row" style="padding: 35px;">
+<h2>Password reset complete</h2>
+<br>
+<p>Your new password has been set. You can log in now on the <a href="{% url 'login' %}">Login</a>.</p>
+</div>
+</div>
+{% endblock %}
